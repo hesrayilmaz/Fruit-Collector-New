@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/BermudaKit/BermudaRunner/Scenes/Level1.unity
+    guid: 232ad6ad29da7ef4cb9a8b8eb498f4f7
+  - enabled: 1
+    path: Assets/BermudaKit/BermudaRunner/Scenes/Level2.unity
+    guid: 79a8f8bef72ab664b82cf62af2f385ec
   m_configObjects: {}

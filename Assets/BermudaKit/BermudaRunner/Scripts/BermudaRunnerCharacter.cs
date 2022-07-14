@@ -2,6 +2,7 @@ using Bermuda.Runner;
 using Bermuda.Animation;
 using PathCreation;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Ali.Helper;
 using DG.Tweening;
 using System.Collections;
@@ -148,8 +149,7 @@ namespace Bermuda.Runner
             }
             else if (collision.gameObject.tag == "GameOverGround")
             {
-                _running = false;
-                IdleAnimation();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
 
         }
