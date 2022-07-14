@@ -16,7 +16,6 @@ public class RunnerPlayer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-
             _runnerCharacter.StartToRun();
         }
     }

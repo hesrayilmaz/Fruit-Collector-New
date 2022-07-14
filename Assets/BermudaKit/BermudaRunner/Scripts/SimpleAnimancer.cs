@@ -38,6 +38,7 @@ namespace Bermuda.Animation
         public void PlayAnimation(string clipName)
         {
             AnimationClip clip = GetAnimationClipByName(clipName);
+            
             if (_animancer != null && clip != null)
             {
                 _currentState = _animancer.Play(clip, _fadeDuration);

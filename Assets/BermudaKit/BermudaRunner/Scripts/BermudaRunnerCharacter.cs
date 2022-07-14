@@ -46,8 +46,8 @@ namespace Bermuda.Runner
         private bool _canSwerve = true;
         private bool _dodgingBack = false;
         private Tweener _forwardSpeedTweeen;
-      
 
+        
 
         void Awake()
         {
@@ -147,10 +147,7 @@ namespace Bermuda.Runner
                     particle.Play();
                 StartCoroutine(SlideProcess());
             }
-            else if (collision.gameObject.tag == "GameOverGround")
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+           
 
         }
 
@@ -261,6 +258,19 @@ namespace Bermuda.Runner
             StartCoroutine(DodgeBackProcess());
         }
 
+        public SimpleAnimancer GetAnimancer() {
+            return _animancer;
+        }
+
+        public void SetAnimancer(SimpleAnimancer anim)
+        {
+            _animancer = anim;
+        }
+
+        public void SetRun(bool isRunning)
+        {
+            _running = isRunning;
+        }
         IEnumerator DodgeBackProcess()
         {
             _canSwerve = false;
