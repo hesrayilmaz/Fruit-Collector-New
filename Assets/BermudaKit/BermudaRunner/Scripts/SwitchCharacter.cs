@@ -7,35 +7,75 @@ using Bermuda.Animation;
 public class SwitchCharacter : MonoBehaviour
 {
     [SerializeField] private BermudaRunnerCharacter _character;
-    private SimpleAnimancer _animancer1, _animancer2;
-    [SerializeField] private GameObject _character1, _character2;
-    private int _whichCharacterIsOn = 1;
+    private int selectedCharacter;
+    [SerializeField] private GameObject[] characters;
+    [SerializeField] private SimpleAnimancer[] animancers;
 
-   // Start is called before the first frame update
-   void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        _character1.gameObject.SetActive(false);
-        _character2.gameObject.SetActive(true);
-        _animancer1 = _character1.GetComponent<SimpleAnimancer>();
-        _animancer2 = _character2.GetComponent<SimpleAnimancer>();
+        selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
+        Transform t = transform.Find("localMover");
+
+        characters = new GameObject[t.childCount-1]; 
+        animancers = new SimpleAnimancer[t.childCount-1];
+
+        for (int i = 0, j=0; i <= characters.Length; i++)
+        {
+            if (t.GetChild(i).gameObject.name == "Main Camera")
+                continue;
+            characters[j] = t.GetChild(i).gameObject;
+            animancers[j] = t.GetChild(i).GetComponent<SimpleAnimancer>();
+            j++;
+        }
+
+        foreach (GameObject ch in characters)
+        {
+            ch.SetActive(false);
+            //Debug.Log("character: " + ch);
+        }
+       
+        /*foreach (SimpleAnimancer s in animancers)
+        {
+            Debug.Log("animancer: " + s);
+        }*/
+        
+        if (characters[selectedCharacter])
+        {
+            characters[selectedCharacter].SetActive(true);
+            _character.SetAnimancer(animancers[selectedCharacter]);
+        }
+
     }
 
     public void SwitchAvatar()
     {
-        switch (_whichCharacterIsOn)
+        /*characters[selectedCharacter].SetActive(false);
+        //selectedCharacter = (selectedCharacter + 1) % characters.Length;
+        selectedCharacter = selectedCharacter + 1;
+        characters[selectedCharacter].SetActive(true);
+        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+        _character.SetAnimancer(animancers[selectedCharacter]);
+        */
+        
+        switch (selectedCharacter)
         {
-            case 1:
-                _whichCharacterIsOn = 2;
-                _character1.gameObject.SetActive(false);
-                _character2.gameObject.SetActive(true);
-                _character.SetAnimancer(_animancer2);
+            case 0:
+                characters[selectedCharacter].SetActive(false);
+                
+                selectedCharacter = selectedCharacter + 2;
+                characters[selectedCharacter].SetActive(true);
+                PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+                _character.SetAnimancer(animancers[selectedCharacter]);
                 break;
 
             case 2:
-                _whichCharacterIsOn = 1;
-                _character1.gameObject.SetActive(true);
-                _character2.gameObject.SetActive(false);
-                _character.SetAnimancer(_animancer1);
+                characters[selectedCharacter].SetActive(false);
+                
+                selectedCharacter = selectedCharacter - 2;
+                characters[selectedCharacter].SetActive(true);
+                PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+                _character.SetAnimancer(animancers[selectedCharacter]);
                 break;
         }
     }

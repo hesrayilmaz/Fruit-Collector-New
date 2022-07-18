@@ -9517,7 +9517,7 @@ MonoBehaviour:
   _localMover: {fileID: 1604217456}
   _localMoverTarget: {fileID: 2135524970}
   _pathCreator: {fileID: 26883194}
-  _animancer: {fileID: 448943981}
+  _animancer: {fileID: 56964876}
   _playerSwerve: {fileID: 830709401}
   _idleAnimName: Idle
   _idleAnimSpeed: 1

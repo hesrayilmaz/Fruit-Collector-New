@@ -21556,7 +21556,7 @@ MonoBehaviour:
   _localMover: {fileID: 550768641}
   _localMoverTarget: {fileID: 1819753509}
   _pathCreator: {fileID: 26883194}
-  _animancer: {fileID: 1318578357}
+  _animancer: {fileID: 7985841035088772096}
   _playerSwerve: {fileID: 2009484134}
   _idleAnimName: Idle
   _idleAnimSpeed: 1
@@ -21651,6 +21651,8 @@ MonoBehaviour:
   _character: {fileID: 2009484132}
   _character1: {fileID: 7985841035088772094}
   _character2: {fileID: 1318578354}
+  characters: []
+  animancers: []
 --- !u!114 &2009484138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24449,7 +24451,7 @@ Transform:
   m_GameObject: {fileID: 5521863321492361171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45019, y: 0.45019, z: 0.45019}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5521863321491870705}
