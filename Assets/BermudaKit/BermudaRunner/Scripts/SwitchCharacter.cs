@@ -12,6 +12,8 @@ public class SwitchCharacter : MonoBehaviour
     private int selectedCharacter;
     [SerializeField] private GameObject[] characters;
     [SerializeField] private SimpleAnimancer[] animancers;
+    public TextMeshProUGUI necessaryFruit;
+    private int fruitValue;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +21,10 @@ public class SwitchCharacter : MonoBehaviour
         selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
         Transform t = transform.Find("localMover");
 
-        characters = new GameObject[t.childCount-1]; 
-        animancers = new SimpleAnimancer[t.childCount-1];
+        characters = new GameObject[t.childCount - 1];
+        animancers = new SimpleAnimancer[t.childCount - 1];
 
-        for (int i = 0, j=0; i <= characters.Length; i++)
+        for (int i = 0, j = 0; i <= characters.Length; i++)
         {
             if (t.GetChild(i).gameObject.name == "Main Camera")
                 continue;
@@ -48,7 +50,7 @@ public class SwitchCharacter : MonoBehaviour
             characters[0].SetActive(true);
             _character.SetAnimancer(animancers[0]);
         }
-            //if (characters[selectedCharacter])
+        //if (characters[selectedCharacter])
         else
         {
             characters[selectedCharacter].SetActive(true);
@@ -65,7 +67,11 @@ public class SwitchCharacter : MonoBehaviour
         characters[selectedCharacter].SetActive(true);
         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
         */
-   
+        int.TryParse(necessaryFruit.GetParsedText(), out fruitValue);
+
+        if (fruitValue <= ScoreUI.score)
+        {
+            ScoreUI.score = ScoreUI.score - fruitValue;
             switch (selectedCharacter)
             {
                 case 0:
@@ -81,8 +87,8 @@ public class SwitchCharacter : MonoBehaviour
                         //characters[selectedCharacter].SetActive(true);
                         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
                         break;*/
-           }
-        
+            }
+        }
 
     }
 }
