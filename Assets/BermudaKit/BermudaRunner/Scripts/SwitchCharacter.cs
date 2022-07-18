@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bermuda.Runner;
 using Bermuda.Animation;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SwitchCharacter : MonoBehaviour
 {
@@ -34,13 +36,20 @@ public class SwitchCharacter : MonoBehaviour
             ch.SetActive(false);
             //Debug.Log("character: " + ch);
         }
-       
+
         /*foreach (SimpleAnimancer s in animancers)
         {
             Debug.Log("animancer: " + s);
         }*/
-        
-        if (characters[selectedCharacter])
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            PlayerPrefs.SetInt("selectedCharacter", 0);
+            characters[0].SetActive(true);
+            _character.SetAnimancer(animancers[0]);
+        }
+            //if (characters[selectedCharacter])
+        else
         {
             characters[selectedCharacter].SetActive(true);
             _character.SetAnimancer(animancers[selectedCharacter]);
@@ -55,28 +64,25 @@ public class SwitchCharacter : MonoBehaviour
         selectedCharacter = selectedCharacter + 1;
         characters[selectedCharacter].SetActive(true);
         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-        _character.SetAnimancer(animancers[selectedCharacter]);
         */
-        
-        switch (selectedCharacter)
-        {
-            case 0:
-                characters[selectedCharacter].SetActive(false);
-                
-                selectedCharacter = selectedCharacter + 2;
-                characters[selectedCharacter].SetActive(true);
-                PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-                _character.SetAnimancer(animancers[selectedCharacter]);
-                break;
+   
+            switch (selectedCharacter)
+            {
+                case 0:
+                    //characters[selectedCharacter].SetActive(false);
+                    selectedCharacter = 2;
+                    //characters[selectedCharacter].SetActive(true);
+                    PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+                    break;
 
-            case 2:
-                characters[selectedCharacter].SetActive(false);
-                
-                selectedCharacter = selectedCharacter - 2;
-                characters[selectedCharacter].SetActive(true);
-                PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-                _character.SetAnimancer(animancers[selectedCharacter]);
-                break;
-        }
+                    /*case 2:
+                        //characters[selectedCharacter].SetActive(false);
+                        selectedCharacter = 0;
+                        //characters[selectedCharacter].SetActive(true);
+                        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
+                        break;*/
+           }
+        
+
     }
 }

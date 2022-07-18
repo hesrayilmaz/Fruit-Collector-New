@@ -6,8 +6,8 @@ using Bermuda.Runner;
 
 public class ChangeScene : MonoBehaviour
 {
-    [SerializeField] private GameObject characterButton;
-    [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject newAvatar;
     [SerializeField] private BermudaRunnerCharacter character;
     private void OnTriggerEnter(Collider other)
     {
@@ -15,8 +15,8 @@ public class ChangeScene : MonoBehaviour
         {
             character.SetRun(false);
             character.IdleAnimation();
-            characterButton.SetActive(true);
-            continueButton.SetActive(true);
+            panel.SetActive(true);
+            newAvatar.SetActive(true);
         }
     }
 
