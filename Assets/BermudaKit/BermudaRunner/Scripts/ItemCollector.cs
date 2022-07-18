@@ -24,7 +24,8 @@ public class ItemCollector : MonoBehaviour
          }
          else if (this.gameObject.tag == "Hamburger")
          {
-            ScoreUI.score -= 1;
+            if(ScoreUI.score!=0)
+                ScoreUI.score -= 1;
          }
 
     }
