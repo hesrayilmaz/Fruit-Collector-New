@@ -18,5 +18,11 @@ public class RunnerPlayer : MonoBehaviour
         {
             _runnerCharacter.StartToRun();
         }
+
+        if (ChangeScene._isLevelChanged)
+        {
+            _runnerCharacter.IdleAnimation();
+            ChangeScene._isLevelChanged = false;
+        }
     }
 }
