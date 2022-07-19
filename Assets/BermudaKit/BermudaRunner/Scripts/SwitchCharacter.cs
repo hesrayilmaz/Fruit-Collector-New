@@ -46,8 +46,8 @@ public class SwitchCharacter : MonoBehaviour
         {
             Debug.Log("animancer: " + s);
         }*/
-
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        Debug.Log("level: " + ChangeScene._whichLevelIsOn);
+        if (ChangeScene._whichLevelIsOn == 0)
         {
             PlayerPrefs.SetInt("selectedCharacter", 0);
             characters[0].SetActive(true);
@@ -74,7 +74,6 @@ public class SwitchCharacter : MonoBehaviour
 
         if (fruitValue <= ScoreUI.score)
         {
-            //buyCharacter.SetActive(true);
             ScoreUI.score = ScoreUI.score - fruitValue;
             switch (selectedCharacter)
             {
@@ -93,16 +92,6 @@ public class SwitchCharacter : MonoBehaviour
                         break;*/
             }
         }
-        /*else
-        {
-            cantBuyCharacter.SetActive(true);
-        }*/
-
     }
 
-    public int GetFruitValue()
-    {
-        return fruitValue;
-;
-    }
 }

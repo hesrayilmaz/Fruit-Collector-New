@@ -16,6 +16,7 @@ namespace Bermuda.Runner
         [SerializeField] private PathCreator _pathCreator;
         [SerializeField] private SimpleAnimancer _animancer;
         [SerializeField] private PlayerSwerve _playerSwerve;
+        [SerializeField] private EndOfLevelUI panel;
         [Space]
         [SerializeField] private string _idleAnimName = "Idle";
         [SerializeField] private float _idleAnimSpeed = 1f;
@@ -46,8 +47,6 @@ namespace Bermuda.Runner
         private bool _canSwerve = true;
         private bool _dodgingBack = false;
         private Tweener _forwardSpeedTweeen;
-
-        
 
         void Awake()
         {
@@ -146,6 +145,16 @@ namespace Bermuda.Runner
                 foreach (ParticleSystem particle in GetComponentsInChildren<ParticleSystem>())
                     particle.Play();
                 StartCoroutine(SlideProcess());
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "GameOverGround")
+            {
+                _running = false;
+                IdleAnimation();
+                panel.ShowPanel();
             }
         }
 
