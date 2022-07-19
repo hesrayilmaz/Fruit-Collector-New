@@ -13,11 +13,14 @@ public class SwitchCharacter : MonoBehaviour
     [SerializeField] private GameObject[] characters;
     [SerializeField] private SimpleAnimancer[] animancers;
     public TextMeshProUGUI necessaryFruit;
-    private int fruitValue;
+    public static int fruitValue = 35;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+       // int.TryParse(necessaryFruit.GetParsedText(), out fruitValue);
+
         selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
         Transform t = transform.Find("localMover");
 
@@ -67,10 +70,11 @@ public class SwitchCharacter : MonoBehaviour
         characters[selectedCharacter].SetActive(true);
         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
         */
-        int.TryParse(necessaryFruit.GetParsedText(), out fruitValue);
+        
 
         if (fruitValue <= ScoreUI.score)
         {
+            //buyCharacter.SetActive(true);
             ScoreUI.score = ScoreUI.score - fruitValue;
             switch (selectedCharacter)
             {
@@ -89,6 +93,16 @@ public class SwitchCharacter : MonoBehaviour
                         break;*/
             }
         }
+        /*else
+        {
+            cantBuyCharacter.SetActive(true);
+        }*/
 
+    }
+
+    public int GetFruitValue()
+    {
+        return fruitValue;
+;
     }
 }

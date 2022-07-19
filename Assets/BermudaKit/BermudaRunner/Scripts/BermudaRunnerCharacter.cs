@@ -147,11 +147,7 @@ namespace Bermuda.Runner
                     particle.Play();
                 StartCoroutine(SlideProcess());
             }
-           
-
         }
-
-
 
         public float GetForwardSpeed()
         {

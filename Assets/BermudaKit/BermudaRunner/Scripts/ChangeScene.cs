@@ -7,7 +7,8 @@ using Bermuda.Runner;
 public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
-    [SerializeField] private GameObject newAvatar;
+    [SerializeField] private GameObject buyCharacter;
+    [SerializeField] private GameObject cantBuyCharacter;
     [SerializeField] private BermudaRunnerCharacter character;
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +17,11 @@ public class ChangeScene : MonoBehaviour
             character.SetRun(false);
             character.IdleAnimation();
             panel.SetActive(true);
-            newAvatar.SetActive(true);
+            Debug.Log("val: " + SwitchCharacter.fruitValue + " eldeki: " + ScoreUI.score);
+            if (SwitchCharacter.fruitValue <= ScoreUI.score)
+                buyCharacter.SetActive(true);
+            else  
+                cantBuyCharacter.SetActive(true);
         }
     }
 
