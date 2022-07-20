@@ -13,7 +13,11 @@ public class EndOfLevelUI : MonoBehaviour
         if (SwitchCharacter.fruitValue <= ScoreUI.score)
             buyCharacter.SetActive(true);
         else
+        {
+            buyCharacter.SetActive(false);
             cantBuyCharacter.SetActive(true);
+        }
+            
     }
 
     public void HidePanel()
