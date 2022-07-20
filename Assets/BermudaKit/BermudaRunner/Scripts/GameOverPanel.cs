@@ -12,6 +12,7 @@ public class GameOverPanel : MonoBehaviour
 
     public void Restart()
     {
+        ScoreUI.score = 0;
         SceneManager.LoadScene("RunnerScene");
     }
 
