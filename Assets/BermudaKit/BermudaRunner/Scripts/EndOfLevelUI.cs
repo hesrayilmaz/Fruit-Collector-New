@@ -15,5 +15,10 @@ public class EndOfLevelUI : MonoBehaviour
         else
             cantBuyCharacter.SetActive(true);
     }
+
+    public void HidePanel()
+    {
+        this.gameObject.SetActive(false);
+    }
    
 }

@@ -10,6 +10,7 @@ TagManager:
   - Slide
   - Hamburger
   - GameOverGround
+  - LevelOverGround
   layers:
   - Default
   - TransparentFX

@@ -6,11 +6,6 @@ public class AudioController : MonoBehaviour
 {
     [SerializeField] private AudioSource sound;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -18,6 +13,12 @@ public class AudioController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             sound.Play();
+        }
+
+        if (RunnerPlayer._isGameStarted)
+        {
+            sound.Play();
+            RunnerPlayer._isGameStarted = false;
         }
     }
 }

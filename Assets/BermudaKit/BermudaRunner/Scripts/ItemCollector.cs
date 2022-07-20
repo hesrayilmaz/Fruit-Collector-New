@@ -11,8 +11,23 @@ public class ItemCollector : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            StartCoroutine(ParticleProcess());
+        }
+        if (this.gameObject.tag == "Fruit")
+        {
+            ScoreUI.score += 1;
+        }
+        else if (this.gameObject.tag == "Hamburger")
+        {
+            if (ScoreUI.score != 0)
+                ScoreUI.score -= 1;
+        }
+    }
+   /* private void OnCollisionEnter(Collision collision)
      {
          if (collision.gameObject.tag == "Player")
          {
@@ -28,8 +43,9 @@ public class ItemCollector : MonoBehaviour
                 ScoreUI.score -= 1;
          }
 
-    }
+    }*/
 
+     
     IEnumerator ParticleProcess()
     {
         ps.Play();

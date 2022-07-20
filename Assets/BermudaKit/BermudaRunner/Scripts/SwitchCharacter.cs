@@ -46,20 +46,26 @@ public class SwitchCharacter : MonoBehaviour
         {
             Debug.Log("animancer: " + s);
         }*/
-        Debug.Log("level: " + ChangeScene._whichLevelIsOn);
-        if (ChangeScene._whichLevelIsOn == 0)
+
+        PlayerPrefs.SetInt("selectedCharacter", 0);
+        characters[0].SetActive(true);
+        _character.SetAnimancer(animancers[0]);
+
+    }
+    private void Update()
+    {
+        
+        /*if (ChangeScene._whichLevelIsOn != 0)
         {
-            PlayerPrefs.SetInt("selectedCharacter", 0);
-            characters[0].SetActive(true);
-            _character.SetAnimancer(animancers[0]);
-        }
-        //if (characters[selectedCharacter])
-        else
-        {
+            Debug.Log("selected: " + selectedCharacter);
+            characters[0].SetActive(false);
             characters[selectedCharacter].SetActive(true);
             _character.SetAnimancer(animancers[selectedCharacter]);
-        }
-
+        }*/
+        //if (characters[selectedCharacter])
+       
+        
+      
     }
 
     public void SwitchAvatar()
@@ -78,9 +84,10 @@ public class SwitchCharacter : MonoBehaviour
             switch (selectedCharacter)
             {
                 case 0:
-                    //characters[selectedCharacter].SetActive(false);
+                    characters[selectedCharacter].SetActive(false);
                     selectedCharacter = 2;
-                    //characters[selectedCharacter].SetActive(true);
+                    characters[selectedCharacter].SetActive(true);
+                    _character.SetAnimancer(animancers[selectedCharacter]);
                     PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
                     break;
 

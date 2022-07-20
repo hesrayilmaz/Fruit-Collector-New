@@ -16,7 +16,8 @@ namespace Bermuda.Runner
         [SerializeField] private PathCreator _pathCreator;
         [SerializeField] private SimpleAnimancer _animancer;
         [SerializeField] private PlayerSwerve _playerSwerve;
-        [SerializeField] private EndOfLevelUI panel;
+        [SerializeField] private EndOfLevelUI _levelPanel;
+        [SerializeField] private GameOverPanel _gameOverPanel;
         [Space]
         [SerializeField] private string _idleAnimName = "Idle";
         [SerializeField] private float _idleAnimSpeed = 1f;
@@ -134,11 +135,11 @@ namespace Bermuda.Runner
             _animancer.SetStateSpeed(animSpeed);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag == "Jump")
+            if (other.gameObject.tag == "Jump")
                 StartCoroutine(JumpProcess());
-            else if (collision.gameObject.tag == "Slide")
+            else if (other.gameObject.tag == "Slide")
             {
                 foreach (TrailRenderer trail in GetComponentsInChildren<TrailRenderer>())
                     trail.emitting = true;
@@ -146,15 +147,17 @@ namespace Bermuda.Runner
                     particle.Play();
                 StartCoroutine(SlideProcess());
             }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag == "GameOverGround")
+            else if (other.gameObject.tag == "LevelOverGround")
             {
                 _running = false;
                 IdleAnimation();
-                panel.ShowPanel();
+                _levelPanel.ShowPanel();
+            }
+            else if (other.gameObject.tag == "GameOverGround")
+            {
+                _running = false;
+                IdleAnimation();
+                _gameOverPanel.ShowPanel();
             }
         }
 
