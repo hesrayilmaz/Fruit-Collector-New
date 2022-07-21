@@ -52,21 +52,6 @@ public class SwitchCharacter : MonoBehaviour
         _character.SetAnimancer(animancers[0]);
 
     }
-    private void Update()
-    {
-        
-        /*if (ChangeScene._whichLevelIsOn != 0)
-        {
-            Debug.Log("selected: " + selectedCharacter);
-            characters[0].SetActive(false);
-            characters[selectedCharacter].SetActive(true);
-            _character.SetAnimancer(animancers[selectedCharacter]);
-        }*/
-        //if (characters[selectedCharacter])
-       
-        
-      
-    }
 
     public void SwitchAvatar()
     {

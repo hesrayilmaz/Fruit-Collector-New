@@ -6,28 +6,32 @@ namespace Ali.Helper
     public class HCLevelManager : GenericSingleton<HCLevelManager>
     {
         [SerializeField] private GameObject[] _levelPrefabs;
-        [SerializeField] private int _levelIndex = 0;
+        [SerializeField] private int _levelIndex;
         [SerializeField] private bool _forceLevel = false;
 
-        private int _globalLevelIndex = 0;
+        private int _globalLevelIndex;
         private bool _inited = false;
         private GameObject _currentLevel;
 
+     
         public void Init()
         {
-            if (_inited)
+            /*if (_inited)
             {
                 return;
             }
-            _inited = true;
+            _inited = true;*/
             //PlayerPrefs.DeleteAll();
-            _globalLevelIndex = PlayerPrefs.GetInt("HCLevel");
+            //_globalLevelIndex = PlayerPrefs.GetInt("HCLevel");
+         
+            _globalLevelIndex = 0;
             if (_forceLevel)
             {
                 _globalLevelIndex = _levelIndex;
                 return;
             }
             _levelIndex = _globalLevelIndex;
+
             if (_levelIndex >= _levelPrefabs.Length)
             {
                 _levelIndex = GameUtility.RandomIntExcept(_levelPrefabs.Length, _levelIndex, 0);
@@ -40,6 +44,10 @@ namespace Ali.Helper
                 Destroy(_currentLevel);
             }
             _currentLevel = Instantiate(_levelPrefabs[_levelIndex]);
+            if (_levelIndex == _levelPrefabs.Length-1)
+            {
+                _levelIndex = 0;
+            }
         }
 
         public GameObject GetCurrentLevel()
@@ -54,7 +62,7 @@ namespace Ali.Helper
                 return;
             }
             _globalLevelIndex++;
-            PlayerPrefs.SetInt("HCLevel", _globalLevelIndex);
+            //PlayerPrefs.SetInt("HCLevel", _globalLevelIndex);
             _levelIndex = _globalLevelIndex;
             if (_levelIndex >= _levelPrefabs.Length)
             {

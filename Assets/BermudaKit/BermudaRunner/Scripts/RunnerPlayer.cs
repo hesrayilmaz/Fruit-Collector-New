@@ -33,14 +33,6 @@ public class RunnerPlayer : MonoBehaviour
             ChangeScene._isLevelChanged = false;
         }
     }
-    /*void OnEnable()
-    {
-        Lean.Touch.LeanTouch.OnFingerTap += HandleFingerTap;
-    }
-    void HandleFingerTap(Lean.Touch.LeanFinger finger)
-    {
-        _isGameStarted = true;
-    }*/
 
     public void StartGame()
     {

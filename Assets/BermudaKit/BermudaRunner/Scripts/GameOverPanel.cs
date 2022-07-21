@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Ali.Helper;
 
 public class GameOverPanel : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class GameOverPanel : MonoBehaviour
 
     public void Restart()
     {
-        ScoreUI.score = 0;
         SceneManager.LoadScene("RunnerScene");
     }
 
