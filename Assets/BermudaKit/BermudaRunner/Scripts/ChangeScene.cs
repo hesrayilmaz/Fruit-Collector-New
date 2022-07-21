@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Bermuda.Runner;
 using Ali.Helper;
+using TMPro;
 
 public class ChangeScene : MonoBehaviour
 {
     public static int _whichLevelIsOn;
     public static bool _isLevelChanged = false;
     [SerializeField] private BermudaRunnerCharacter _character;
-    [SerializeField] private EndOfLevelUI panel; 
+    [SerializeField] private EndOfLevelUI panel;
+    [SerializeField] private TextMeshProUGUI _levelCounter;
 
     private void Start()
     {
@@ -25,6 +27,7 @@ public class ChangeScene : MonoBehaviour
         _whichLevelIsOn++;
         _isLevelChanged = true;
         panel.HidePanel();
+        _levelCounter.text = "Level " + (HCLevelManager.Instance.GetGlobalLevelIndex()+1);
     }
 
 }
