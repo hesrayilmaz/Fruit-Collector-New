@@ -6,10 +6,14 @@ using Bermuda.Runner;
 
 public class ChangeScene : MonoBehaviour
 {
-    public static int _whichLevelIsOn = 0;
+    public static int _whichLevelIsOn;
     public static bool _isLevelChanged = false;
     [SerializeField] private BermudaRunnerCharacter _character;
     [SerializeField] private EndOfLevelUI panel;
+    private void Start()
+    {
+        _whichLevelIsOn = 0;
+    }
     public void Continue()
     {
         transform.GetChild(_whichLevelIsOn).gameObject.SetActive(false);
