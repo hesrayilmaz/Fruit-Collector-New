@@ -11,7 +11,10 @@ public class EndOfLevelUI : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         if (SwitchCharacter.fruitValue <= ScoreUI.score)
+        {
+            cantBuyCharacter.SetActive(false);
             buyCharacter.SetActive(true);
+        }
         else
         {
             buyCharacter.SetActive(false);

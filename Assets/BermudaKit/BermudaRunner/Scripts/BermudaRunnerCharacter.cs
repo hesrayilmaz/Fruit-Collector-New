@@ -151,8 +151,6 @@ namespace Bermuda.Runner
             }
             else if (other.gameObject.tag == "Speed")
             {
-               // foreach (TrailRenderer trail in GetComponentsInChildren<TrailRenderer>())
-                 //   trail.emitting = true;
                 StartCoroutine(SpeedProcess());
             }
             else if (other.gameObject.tag == "LevelOverGround")
@@ -324,10 +322,7 @@ namespace Bermuda.Runner
             _forwardSpeed = 20;
             _runAnimSpeed = 3.5f;
             RunAnimation();
-            //SpeedAnimation();
             yield return new WaitForSeconds(0.5f);
-            //foreach (TrailRenderer trail in GetComponentsInChildren<TrailRenderer>())
-              //  trail.emitting = false;
             _forwardSpeed = 5;
             _runAnimSpeed = 1.5f;
             RunAnimation();
