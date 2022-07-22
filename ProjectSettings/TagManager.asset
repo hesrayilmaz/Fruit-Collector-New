@@ -11,6 +11,7 @@ TagManager:
   - Hamburger
   - GameOverGround
   - LevelOverGround
+  - Speed
   layers:
   - Default
   - TransparentFX

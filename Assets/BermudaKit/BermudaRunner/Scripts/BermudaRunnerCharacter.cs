@@ -23,10 +23,12 @@ namespace Bermuda.Runner
         [SerializeField] private float _idleAnimSpeed = 1f;
         [SerializeField] private string _runAnimName = "Standard Run";
         [SerializeField] private float _runAnimSpeed = 2f;
-        public string _jumpAnimName = "Jumping";
-        public float _jumpAnimSpeed = 2f;
-        public string _slideAnimName = "Female Action Pose";
-        public float _slideAnimSpeed = 2f;
+        [SerializeField] private string _jumpAnimName = "Jumping";
+        [SerializeField] private float _jumpAnimSpeed = 2f;
+        [SerializeField] private string _slideAnimName = "Female Action Pose";
+        [SerializeField] private float _slideAnimSpeed = 2f;
+        [SerializeField] private string _speedAnimName = "Speed Pose";
+        [SerializeField] private float _speedAnimSpeed = 2f;
         [Space]
         [SerializeField] private float _startDistance = 5f;
         [SerializeField] private float _forwardSpeed = 1f;
@@ -147,6 +149,12 @@ namespace Bermuda.Runner
                     particle.Play();
                 StartCoroutine(SlideProcess());
             }
+            else if (other.gameObject.tag == "Speed")
+            {
+               // foreach (TrailRenderer trail in GetComponentsInChildren<TrailRenderer>())
+                 //   trail.emitting = true;
+                StartCoroutine(SpeedProcess());
+            }
             else if (other.gameObject.tag == "LevelOverGround")
             {
                 _running = false;
@@ -207,6 +215,10 @@ namespace Bermuda.Runner
         public void SlideAnimation()
         {
             PlayAnimation(_slideAnimName, _slideAnimSpeed);
+        }
+        public void SpeedAnimation()
+        {
+            PlayAnimation(_speedAnimName, _speedAnimSpeed);
         }
 
         public float GetHorizontalRatio()
@@ -305,6 +317,19 @@ namespace Bermuda.Runner
                 trail.emitting = false;
             foreach (ParticleSystem particle in GetComponentsInChildren<ParticleSystem>())
                 particle.Pause();
+            RunAnimation();
+        }
+        IEnumerator SpeedProcess()
+        {
+            _forwardSpeed = 20;
+            _runAnimSpeed = 3.5f;
+            RunAnimation();
+            //SpeedAnimation();
+            yield return new WaitForSeconds(0.5f);
+            //foreach (TrailRenderer trail in GetComponentsInChildren<TrailRenderer>())
+              //  trail.emitting = false;
+            _forwardSpeed = 5;
+            _runAnimSpeed = 1.5f;
             RunAnimation();
         }
     }
