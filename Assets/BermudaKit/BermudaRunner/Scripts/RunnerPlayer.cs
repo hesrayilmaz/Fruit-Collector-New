@@ -13,7 +13,6 @@ public class RunnerPlayer : MonoBehaviour
     void Start()
     {
         _runnerCharacter.IdleAnimation();
-        Debug.Log("idle");
     }
 
     void Update()

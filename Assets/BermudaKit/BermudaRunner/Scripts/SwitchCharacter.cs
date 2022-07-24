@@ -16,7 +16,7 @@ public class SwitchCharacter : MonoBehaviour
     public static int fruitValue = 35;
     private bool _isAvatarChanged = false;
     
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -48,12 +48,11 @@ public class SwitchCharacter : MonoBehaviour
             Debug.Log("animancer: " + s);
         }*/
 
-        PlayerPrefs.SetInt("selectedCharacter", 0);
-        characters[0].SetActive(true);
-        _character.SetAnimancer(animancers[0]);
-
+        PlayerPrefs.SetInt("selectedCharacter", 3);
+        characters[3].SetActive(true);
+        _character.SetAnimancer(animancers[3]);
     }
-
+    
     private void Update()
     {
         if (_isAvatarChanged)
