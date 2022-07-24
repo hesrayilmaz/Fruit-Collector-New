@@ -14,6 +14,7 @@ public class SwitchCharacter : MonoBehaviour
     [SerializeField] private SimpleAnimancer[] animancers;
     public TextMeshProUGUI necessaryFruit;
     public static int fruitValue = 35;
+    private bool _isAvatarChanged = false;
     
 
     // Start is called before the first frame update
@@ -53,6 +54,16 @@ public class SwitchCharacter : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (_isAvatarChanged)
+        {
+            characters[0].SetActive(false);
+            characters[selectedCharacter].SetActive(true);
+            _character.SetAnimancer(animancers[selectedCharacter]);
+            _isAvatarChanged = false;
+        }
+    }
     public void SwitchAvatar()
     {
         /*characters[selectedCharacter].SetActive(false);
@@ -66,13 +77,14 @@ public class SwitchCharacter : MonoBehaviour
         if (fruitValue <= ScoreUI.score)
         {
             ScoreUI.score = ScoreUI.score - fruitValue;
+            _isAvatarChanged = true;
             switch (selectedCharacter)
             {
                 case 0:
-                    characters[selectedCharacter].SetActive(false);
+                    //characters[selectedCharacter].SetActive(false);
                     selectedCharacter = 2;
-                    characters[selectedCharacter].SetActive(true);
-                    _character.SetAnimancer(animancers[selectedCharacter]);
+                   // characters[selectedCharacter].SetActive(true);
+                   // _character.SetAnimancer(animancers[selectedCharacter]);
                     PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
                     break;
 
