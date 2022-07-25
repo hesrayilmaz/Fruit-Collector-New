@@ -9,20 +9,22 @@ using TMPro;
 public class SwitchCharacter : MonoBehaviour
 {
     [SerializeField] private BermudaRunnerCharacter _character;
+    [SerializeField] private EndOfLevelUI _panel;
     private int selectedCharacter;
     [SerializeField] private GameObject[] characters;
     [SerializeField] private SimpleAnimancer[] animancers;
     public TextMeshProUGUI necessaryFruit;
     public static int fruitValue = 35;
-    private bool _isAvatarChanged = false;
+    public static bool _isAvatarChanged = false;
     
    
     // Start is called before the first frame update
     void Start()
     {
-       // int.TryParse(necessaryFruit.GetParsedText(), out fruitValue);
+        // int.TryParse(necessaryFruit.GetParsedText(), out fruitValue);
+        //selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
 
-        selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
+        selectedCharacter = 0;
         Transform t = transform.Find("localMover");
 
         characters = new GameObject[t.childCount - 1];
@@ -48,52 +50,34 @@ public class SwitchCharacter : MonoBehaviour
             Debug.Log("animancer: " + s);
         }*/
 
-        PlayerPrefs.SetInt("selectedCharacter", 3);
-        characters[3].SetActive(true);
-        _character.SetAnimancer(animancers[3]);
+        PlayerPrefs.SetInt("selectedCharacter", 0);
+        characters[0].SetActive(true);
+        _character.SetAnimancer(animancers[0]);
     }
     
     private void Update()
     {
-        if (_isAvatarChanged)
+        /*if (_isAvatarChanged)
         {
-            characters[0].SetActive(false);
+            characters[selectedCharacter-1].SetActive(false);
             characters[selectedCharacter].SetActive(true);
             _character.SetAnimancer(animancers[selectedCharacter]);
             _isAvatarChanged = false;
-        }
+        }*/
     }
     public void SwitchAvatar()
     {
-        /*characters[selectedCharacter].SetActive(false);
-        //selectedCharacter = (selectedCharacter + 1) % characters.Length;
-        selectedCharacter = selectedCharacter + 1;
-        characters[selectedCharacter].SetActive(true);
-        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-        */
-        
-
         if (fruitValue <= ScoreUI.score)
         {
             ScoreUI.score = ScoreUI.score - fruitValue;
+            characters[selectedCharacter].SetActive(false);
+            //selectedCharacter = (selectedCharacter + 1) % characters.Length;
+            selectedCharacter = selectedCharacter + 1;
+            characters[selectedCharacter].SetActive(true);
+            _character.SetAnimancer(animancers[selectedCharacter]);
+            PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
             _isAvatarChanged = true;
-            switch (selectedCharacter)
-            {
-                case 0:
-                    //characters[selectedCharacter].SetActive(false);
-                    selectedCharacter = 2;
-                   // characters[selectedCharacter].SetActive(true);
-                   // _character.SetAnimancer(animancers[selectedCharacter]);
-                    PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-                    break;
 
-                    /*case 2:
-                        //characters[selectedCharacter].SetActive(false);
-                        selectedCharacter = 0;
-                        //characters[selectedCharacter].SetActive(true);
-                        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-                        break;*/
-            }
         }
     }
 
