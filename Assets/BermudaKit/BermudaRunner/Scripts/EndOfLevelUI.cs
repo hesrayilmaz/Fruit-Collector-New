@@ -12,7 +12,7 @@ public class EndOfLevelUI : MonoBehaviour
     //[SerializeField] private GameObject[] characters;
     public static int nextCharacter;
     KeyValuePair<GameObject, int>[] characters;
-    public static int fruitValue=35;
+    public static int fruitValue=40;
 
  
     public void Init()
@@ -30,14 +30,14 @@ public class EndOfLevelUI : MonoBehaviour
         for (int i = 0; i < t.childCount; i++)
         {
             characters[i] = new KeyValuePair<GameObject, int>(t.GetChild(i).gameObject,fruitValue);
-            fruitValue += 15;
+            fruitValue += 20;
         }
 
         foreach (KeyValuePair<GameObject,int> pair in characters)
         {
             pair.Key.SetActive(false);
         }
-        fruitValue = 35;
+        fruitValue = 40;
         characters[nextCharacter].Key.SetActive(true);
     }
 
@@ -49,23 +49,23 @@ public class EndOfLevelUI : MonoBehaviour
     public void ShowPanel()
     {
         this.gameObject.SetActive(true);
-        Debug.Log(nextCharacter);
+       
         
         if (SwitchCharacter._isAvatarChanged)
          {
             nextCharacter++;
+            if (nextCharacter >= characters.Length)
+                nextCharacter = characters.Length - 1;
+
             fruitValue = characters[nextCharacter].Value;
             characters[nextCharacter - 1].Key.SetActive(false);
             characters[nextCharacter].Key.SetActive(true);
             SwitchCharacter._isAvatarChanged = false;
         }
-
-        if (nextCharacter >= characters.Length)
-        {
-            buyCharacter.SetActive(false);
-            cantBuyCharacter.SetActive(true);
-        }
-        else if (characters[nextCharacter].Value <= ScoreUI.score)
+        Debug.Log("next" + nextCharacter);
+        Debug.Log("array length" + characters.Length);
+        
+        if (characters[nextCharacter].Value <= ScoreUI.score)
         {
             cantBuyCharacter.SetActive(false);
             buyCharacter.SetActive(true);
