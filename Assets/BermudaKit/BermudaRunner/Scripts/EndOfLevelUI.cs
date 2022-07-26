@@ -60,7 +60,12 @@ public class EndOfLevelUI : MonoBehaviour
             SwitchCharacter._isAvatarChanged = false;
         }
 
-        if (characters[nextCharacter].Value <= ScoreUI.score)
+        if (nextCharacter >= characters.Length)
+        {
+            buyCharacter.SetActive(false);
+            cantBuyCharacter.SetActive(true);
+        }
+        else if (characters[nextCharacter].Value <= ScoreUI.score)
         {
             cantBuyCharacter.SetActive(false);
             buyCharacter.SetActive(true);

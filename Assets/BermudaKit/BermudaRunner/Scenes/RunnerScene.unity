@@ -1941,7 +1941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &946521873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2404,7 +2404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1124577140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2420,7 +2420,8 @@ MonoBehaviour:
   _levelPrefabs:
   - {fileID: 7356169664223645393, guid: 0ddb4af2017c5bf44ad2648853d57f42, type: 3}
   - {fileID: 7581182597750582363, guid: 497199a306ab6424584781c1b7b3f01b, type: 3}
-  - {fileID: 5992312041990445370, guid: e8ed8dae261f53c4087f85ccbd7ce120, type: 3}
+  - {fileID: 8456149681729428155, guid: e8ed8dae261f53c4087f85ccbd7ce120, type: 3}
+  - {fileID: 258967986710190136, guid: db0d0d201de896d47906efbb74378c5c, type: 3}
   _levelIndex: 0
   _forceLevel: 0
 --- !u!4 &1124577141
@@ -2853,7 +2854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -65}
+  m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1176081594
