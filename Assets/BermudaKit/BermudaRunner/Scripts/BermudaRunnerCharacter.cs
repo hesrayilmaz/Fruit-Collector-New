@@ -323,7 +323,7 @@ namespace Bermuda.Runner
             _forwardSpeed = 20;
             _runAnimSpeed = 3.5f;
             RunAnimation();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.6f);
             _forwardSpeed = 5;
             _runAnimSpeed = 1.5f;
             RunAnimation();
