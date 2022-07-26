@@ -67,9 +67,13 @@ public class SwitchCharacter : MonoBehaviour
     }
     public void SwitchAvatar()
     {
-        if (fruitValue <= ScoreUI.score)
+       /* int fruitVal = _panel.GetFruitValue();
+        Debug.Log("value" + fruitVal);
+        Debug.Log("????" + EndOfLevelUI.fruitValue);
+        */
+        if (EndOfLevelUI.fruitValue <= ScoreUI.score)
         {
-            ScoreUI.score = ScoreUI.score - fruitValue;
+            ScoreUI.score = ScoreUI.score - EndOfLevelUI.fruitValue;
             characters[selectedCharacter].SetActive(false);
             //selectedCharacter = (selectedCharacter + 1) % characters.Length;
             selectedCharacter = selectedCharacter + 1;

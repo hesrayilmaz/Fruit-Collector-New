@@ -1389,9 +1389,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be7078212ab8b540b1cd7468d7e42c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitTextBuy: {fileID: 405419293}
+  fruitTextCantBuy: {fileID: 1396627863}
   buyCharacter: {fileID: 1495410789}
   cantBuyCharacter: {fileID: 1678287333}
-  characters: []
 --- !u!114 &607922272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4922,7 +4923,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 90}
-  m_SizeDelta: {x: 130, y: 390}
+  m_SizeDelta: {x: 120, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041150285
 MonoBehaviour:

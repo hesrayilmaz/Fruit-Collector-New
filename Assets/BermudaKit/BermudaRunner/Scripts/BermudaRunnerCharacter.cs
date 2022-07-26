@@ -56,6 +56,7 @@ namespace Bermuda.Runner
             _playerSwerve.OnSwerve += PlayerSwerve_OnSwerve;
             _distance = _startDistance;
             _oldPosition = _localMoverTarget.localPosition;
+            _levelPanel.Init();
         }
 
         public void Init()

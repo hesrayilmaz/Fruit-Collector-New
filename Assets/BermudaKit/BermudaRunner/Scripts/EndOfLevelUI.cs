@@ -1,57 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EndOfLevelUI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI fruitTextBuy;
+    [SerializeField] private TextMeshProUGUI fruitTextCantBuy;
     [SerializeField] private GameObject buyCharacter;
     [SerializeField] private GameObject cantBuyCharacter;
-    [SerializeField] private GameObject[] characters;
+    //[SerializeField] private GameObject[] characters;
     public static int nextCharacter;
-   
+    KeyValuePair<GameObject, int>[] characters;
+    public static int fruitValue=35;
 
-    private void Start()
+ 
+    public void Init()
     {
         Transform t = transform.Find("Character");
-        characters = new GameObject[t.childCount];
+        //characters = new GameObject[t.childCount];
+        characters = new KeyValuePair<GameObject, int>[t.childCount];
         nextCharacter = 0;
-        
-        for (int i = 0; i < characters.Length; i++)
+
+        /*for (int i = 0; i < characters.Length; i++)
         {
             characters[i] = t.GetChild(i).gameObject;
-        }
-
-        foreach (GameObject ch in characters)
+        }*/
+       
+        for (int i = 0; i < t.childCount; i++)
         {
-            ch.SetActive(false);
-            //Debug.Log("character: " + ch);
+            characters[i] = new KeyValuePair<GameObject, int>(t.GetChild(i).gameObject,fruitValue);
+            fruitValue += 15;
         }
-        //PlayerPrefs.SetInt("nextCharacter", 0);
-        characters[nextCharacter].SetActive(true);
+
+        foreach (KeyValuePair<GameObject,int> pair in characters)
+        {
+            pair.Key.SetActive(false);
+        }
+        fruitValue = 35;
+        characters[nextCharacter].Key.SetActive(true);
     }
 
-    public void SetNextCharacter()
+    private void Update()
     {
-        
+        fruitTextBuy.text = "" + fruitValue;
+        fruitTextCantBuy.text = "" + fruitValue;
     }
-
     public void ShowPanel()
     {
         this.gameObject.SetActive(true);
-        //characters[nextCharacter - 1].SetActive(false);
-        //characters[nextCharacter].SetActive(true);
-        // characters[PlayerPrefs.GetInt("nextCharacter")].SetActive(true);
-         if (SwitchCharacter._isAvatarChanged)
+        Debug.Log(nextCharacter);
+        
+        if (SwitchCharacter._isAvatarChanged)
          {
-             nextCharacter++;
-            // while (nextCharacter > 0)
-            //{
-            characters[nextCharacter - 1].SetActive(false);
-            characters[nextCharacter].SetActive(true);
-            // }
+            nextCharacter++;
+            fruitValue = characters[nextCharacter].Value;
+            characters[nextCharacter - 1].Key.SetActive(false);
+            characters[nextCharacter].Key.SetActive(true);
+            SwitchCharacter._isAvatarChanged = false;
         }
 
-        if (SwitchCharacter.fruitValue <= ScoreUI.score)
+        if (characters[nextCharacter].Value <= ScoreUI.score)
         {
             cantBuyCharacter.SetActive(false);
             buyCharacter.SetActive(true);
@@ -68,5 +77,10 @@ public class EndOfLevelUI : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
+    /*public int GetFruitValue()
+    {
+        return characters[nextCharacter].Value;
+    }*/
    
 }
